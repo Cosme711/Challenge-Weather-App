@@ -7,7 +7,8 @@ module.exports = {
       darkblue: "#100E1D",
       white: "#E7E7EB",
       grey: "#A09FB1",
-      darkgrey: "#88869D "
+      darkgrey: "#88869D",
+      purple: "#3C47E9"
     },
     extend: {
       animation: {
@@ -16,12 +17,12 @@ module.exports = {
       },
       keyframes: {
         'openModal': {
-          "0%" : { transform: "translateX(-40rem)" },
+          "0%" : { transform: "translateX(-100rem)" },
           "100%" : { transform: "translateX(0)" }
         },
         'closeModal': {
           "0%" : { transform: "translateX(0)" },
-          "100%" : { transform: "translateX(-40rem)" }
+          "100%" : { transform: "translateX(-100rem)" }
         }
       }
     }

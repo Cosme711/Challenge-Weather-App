@@ -32,7 +32,7 @@
 
     </div>
 
-    <Search v-show="searchModal"/>
+    <Search v-if="searchModal"/>
 
   </div>
 </template>
