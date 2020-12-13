@@ -2,9 +2,9 @@
     <div>
     <div class="w-2/5 h-screen flex flex-col justify-between items-center bg-blue">
 
-      <div class="pt-5 w-full flex justify-between items-center">
-        <a class=" ml-4 p-4 bg-darkgrey text-white">Search for places</a>
-        <a class="mr-4 p-2 bg-darkgrey flex rounded-full">
+      <div class="pt-5 mt-5 w-4/5 w-2/3 flex justify-between items-center">
+        <a class="px-4 py-2 bg-darkgrey text-white cursor-pointer" @click="openModal">Search for places</a>
+        <a class="p-2 bg-darkgrey flex rounded-full cursor-pointer">
           <span class="material-icons text-white">gps_fixed</span>
         </a>
       </div>
@@ -31,21 +31,37 @@
       </div>
 
     </div>
+
+    <Search v-show="searchModal"/>
+
   </div>
 </template>
 
 <script>
 
 import { useState } from "@/helpers";
+import Search from "@/components/Search";
+import { useStore } from "vuex";
 
 export default {
     name: 'NavBar',
+    components: { Search },
     setup() {
 
         const { currentDay } = useState(["currentDay"]);
 
+        const { searchModal } = useState(["searchModal"]);
+
+        const store = useStore();
+
+        function openModal() {
+          store.commit("SEARCH_MODAL", true);
+        }
+
         return {
-            currentDay
+            currentDay,
+            searchModal,
+            openModal
         }
     }
 }

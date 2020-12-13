@@ -7,7 +7,8 @@ export default createStore({
       currentDate: "",
       currentTemp: 0,
       weatherState: ""
-    }
+    },
+    searchModal: false
   },
   mutations: {
     SAVE_CITY(state, city) {
@@ -21,6 +22,9 @@ export default createStore({
     },
     SAVE_WEATHERSTATE(state, weatherState) {
       state.currentDay.weatherState = weatherState;
+    },
+    SEARCH_MODAL(state, boolean) {
+      state.searchModal = boolean
     }
   },
   actions: {
