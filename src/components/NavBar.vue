@@ -15,15 +15,15 @@
 
       <div>
         <p class="text-white text-8xl">{{ currentDay.currentTemp }}°C</p>
-        <p class="mt-8 text-center text-darkgrey text-4xl">{{ currentDay.weatherState }}</p>
+        <p class="mt-4 text-center text-darkgrey text-4xl">{{ currentDay.weatherState }}</p>
       </div>
 
       <div class="w-40 pb-8 text-darkgrey">
-        <div class="w-full flex justify-between items-center">
+        <!-- <div class="w-full flex justify-between items-center">
           <a>Today</a>
           <a>•</a>
           <a>{{ currentDay.currentDate }}</a>
-        </div>
+        </div> -->
         <div class="flex justify-center items-center pt-4">
           <span class="material-icons">location_on</span>
           <p class="ml-2">{{ currentDay.cityName }}</p>
