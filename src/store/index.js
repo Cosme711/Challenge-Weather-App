@@ -1,14 +1,24 @@
 import { createStore } from 'vuex'
+import axios from 'axios'
 
 export default createStore({
   state: {
     currentDay: {
+      woeid: "",
       cityName: "",
       currentDate: "",
       currentTemp: 0,
       weatherState: ""
     },
-    searchModal: false
+    searchModal: false,
+    api: {
+      apiURL: "https://www.metaweather.com/api/location",
+      corsURL: "https://cors-anywhere.herokuapp.com"
+    },
+    coords: {
+      test: "gzgz",
+      test2: "blabla"
+    }
   },
   mutations: {
     SAVE_CITY(state, city) {
@@ -23,16 +33,41 @@ export default createStore({
     SAVE_WEATHERSTATE(state, weatherState) {
       state.currentDay.weatherState = weatherState;
     },
+    SAVE_WOEID(state, woeid) {
+      state.currentDay.woeid = woeid;
+    },
     SEARCH_MODAL(state, boolean) {
       state.searchModal = boolean
+    },
+    SAVE_POSITIONS(state, coords) {
+      state.coords = coords
     }
   },
   actions: {
-    getCountries({ commit, dispatch }) {
-      const axios = require("axios");
-      let corsURL = "https://cors-anywhere.herokuapp.com"
-      let apiURL = "https://www.metaweather.com/api/location/615702"
-      axios.get(`${corsURL}/${apiURL}`)
+    getLocations({ commit, state }) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          let coords = {
+            Latitude: position.coords.latitude,
+            Longitude: position.coords.longitude
+          }
+          commit("SAVE_POSITIONS", coords);
+          console.log(state.coords)
+        }
+      )
+    },
+    searchLocation({ commit, dispatch, state }) {
+      axios.get(`${state.api.corsURL}/${state.api.apiURL}/search/?query=paris`)
+      .then(result => {
+        commit("SAVE_WOEID", result.data[0].woeid);
+        dispatch("getInfos");
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    },
+    getInfos({ commit, dispatch, state }) {
+      axios.get(`${state.api.corsURL}/${state.api.apiURL}/${state.currentDay.woeid}`)
       .then(result => {
         commit("SAVE_CITY", result.data.title);
         commit("SAVE_TEMPS", Math.round(result.data.consolidated_weather[0].the_temp));

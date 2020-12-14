@@ -17,7 +17,8 @@ export default {
     const store = useStore();
 
     onMounted(() => {
-      store.dispatch("getCountries");
+      store.dispatch("searchLocation");
+      store.dispatch("getLocations");
     });
 
   }
