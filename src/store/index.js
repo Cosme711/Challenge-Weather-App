@@ -18,7 +18,8 @@ export default createStore({
     coords: {
       test: "gzgz",
       test2: "blabla"
-    }
+    },
+    locations: {}
   },
   mutations: {
     SAVE_CITY(state, city) {
@@ -39,45 +40,48 @@ export default createStore({
     SEARCH_MODAL(state, boolean) {
       state.searchModal = boolean
     },
-    SAVE_POSITIONS(state, coords) {
+    SAVE_COORDS(state, coords) {
       state.coords = coords
+    },
+    SAVE_LOCATIONS(state, locations) {
+      state.locations = locations
     }
   },
   actions: {
-    getLocations({ commit, dispatch, state }) {
+    getUserLocations({ commit, dispatch }) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           let coords = {
             Latitude: position.coords.latitude,
             Longitude: position.coords.longitude
           } 
-          commit("SAVE_POSITIONS", coords);
+          commit("SAVE_COORDS", coords);
           dispatch("searchLocationByCoords");
-          console.log(state.coords);
         }
       )
     },
-    searchLocationByCoords({ state }) {
+    searchLocationByCoords({ commit, dispatch, state }) {
       axios.get(`${state.api.corsURL}/${state.api.apiURL}/search/?lattlong=${state.coords.Latitude},${state.coords.Longitude}`)
       .then(result => {
-        console.log(result);
-      })
-      .catch(error => {
-        console.log(error);
-      })
-    },
-    searchLocation({ commit, dispatch, state }) {
-      axios.get(`${state.api.corsURL}/${state.api.apiURL}/search/?query=paris`)
-      .then(result => {
-        commit("SAVE_WOEID", result.data[0].woeid);
+        commit("SAVE_LOCATIONS", result.data[0].woeid);
         dispatch("getInfos");
       })
       .catch(error => {
         console.log(error);
       })
     },
+    // searchLocation({ commit, dispatch, state }) {
+    //   axios.get(`${state.api.corsURL}/${state.api.apiURL}/search/?query=paris`)
+    //   .then(result => {
+    //     commit("SAVE_WOEID", result.data[0].woeid);
+    //     dispatch("getInfos");
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   })
+    // },
     getInfos({ commit, dispatch, state }) {
-      axios.get(`${state.api.corsURL}/${state.api.apiURL}/${state.currentDay.woeid}`)
+      axios.get(`${state.api.corsURL}/${state.api.apiURL}/${state.locations}`)
       .then(result => {
         commit("SAVE_CITY", result.data.title);
         commit("SAVE_TEMPS", Math.round(result.data.consolidated_weather[0].the_temp));
