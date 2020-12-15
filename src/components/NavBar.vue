@@ -1,6 +1,6 @@
 <template>
     <div>
-    <div class="w-2/5 h-screen flex flex-col justify-between items-center bg-blue">
+    <div class="h-screen flex flex-col justify-between items-center bg-blue">
 
       <div class="pt-5 mt-5 w-2/3 flex justify-between items-center">
         <a class="px-4 py-2 bg-darkgrey text-white cursor-pointer" @click="openModal">Search for places</a>
