@@ -44,17 +44,27 @@ export default createStore({
     }
   },
   actions: {
-    getLocations({ commit, state }) {
+    getLocations({ commit, dispatch, state }) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           let coords = {
             Latitude: position.coords.latitude,
             Longitude: position.coords.longitude
-          }
+          } 
           commit("SAVE_POSITIONS", coords);
-          console.log(state.coords)
+          dispatch("searchLocationByCoords");
+          console.log(state.coords);
         }
       )
+    },
+    searchLocationByCoords({ state }) {
+      axios.get(`${state.api.corsURL}/${state.api.apiURL}/search/?lattlong=${state.coords.Latitude},${state.coords.Longitude}`)
+      .then(result => {
+        console.log(result);
+      })
+      .catch(error => {
+        console.log(error);
+      })
     },
     searchLocation({ commit, dispatch, state }) {
       axios.get(`${state.api.corsURL}/${state.api.apiURL}/search/?query=paris`)

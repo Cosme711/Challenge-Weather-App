@@ -19,11 +19,11 @@
       </div>
 
       <div class="w-40 pb-8 text-darkgrey">
-        <!-- <div class="w-full flex justify-between items-center">
+        <div class="w-full flex justify-between items-center">
           <a>Today</a>
           <a>•</a>
           <a>{{ currentDay.currentDate }}</a>
-        </div> -->
+        </div>
         <div class="flex justify-center items-center pt-4">
           <span class="material-icons">location_on</span>
           <p class="ml-2">{{ currentDay.cityName }}</p>
