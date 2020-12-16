@@ -24,7 +24,7 @@
           <a>•</a>
           <a>{{ currentDay.currentDate }}</a>
         </div>
-        <div class="flex justify-center items-center pt-4">
+        <div class="pt-4 flex justify-center items-center">
           <span class="material-icons">location_on</span>
           <p class="ml-2">{{ currentDay.cityName }}</p>
         </div>
