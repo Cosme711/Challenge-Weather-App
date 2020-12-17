@@ -12,6 +12,7 @@
     "autoprefixer": "^9.8.6",
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
+    "dayjs": "^1.9.7",
     "node-sass": "^5.0.0",
     "postcss": "^7.0.35",
     "sass-loader": "^10.1.0",

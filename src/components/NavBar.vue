@@ -10,7 +10,7 @@
       </div>
 
       <div>
-        <img :src="test" :alt="currentDay.weatherState">
+        <img :src="imgDynamic" :alt="currentDay.weatherState">
       </div>
 
       <div>
@@ -22,7 +22,7 @@
         <div class="w-full flex justify-between items-center">
           <a>Today</a>
           <a>•</a>
-          <a>{{ currentDay.currentDate }}</a>
+          <a>{{ dateConvert }}</a>
         </div>
         <div class="pt-4 flex justify-center items-center">
           <span class="material-icons">location_on</span>
@@ -40,7 +40,8 @@
 </template>
 
 <script>
-import 'animate.css'
+import 'animate.css';
+import dayjs from 'dayjs';
 import { useState } from "@/helpers";
 import Search from "@/components/Search";
 import { useStore } from "vuex";
@@ -69,12 +70,18 @@ export default {
           store.commit("SEARCH_MODAL", true);
         }
 
-        let test = computed(() => {
+        let imgDynamic = computed(() => {
           if(currentDay.value.weatherState) {
             let weatherState = currentDay.value.weatherState;
             weatherState = weatherState.replace(/\s+/g, '');
             console.log(weatherState)
             return require(`@/assets/images/${weatherState}.png`);
+          }
+        })
+
+        let dateConvert = computed(() => {
+          if(currentDay.value.currentDate) {
+            return dayjs(currentDay.value.currentDate).format("ddd,DD MMM");
           }
         })
 
@@ -85,7 +92,8 @@ export default {
             openModal,
             toggleSidebar,
             data,
-            test
+            dateConvert,
+            imgDynamic
         }
     }
 }
