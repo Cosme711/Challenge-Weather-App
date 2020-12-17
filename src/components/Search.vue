@@ -1,7 +1,6 @@
 <template>  
 
-    <div class="absolute top-0 bg-blue w-1/3 h-screen">
-
+    <div class="fixed top-0 bg-blue w-1/4 h-screen">
 
         <div class="mt-4 pr-7 w-full flex items-center justify-end cursor-pointer" @click="close()">
             <span class="material-icons text-4xl text-white">close</span>

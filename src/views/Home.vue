@@ -1,7 +1,7 @@
 <template>
-  <div class="flex">
-      <NavBar class="w-1/3" />
-      <Content class="w-2/3"/>
+  <div class="relative flex">
+      <NavBar class="fixed w-1/4" />
+      <Content class="absolute left-1/4 w-3/4 mr-1/3 bg-darkblue"/>
   </div>
 </template>
 
