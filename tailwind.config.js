@@ -10,22 +10,6 @@ module.exports = {
       darkgrey: "#88869D",
       purple: "#3C47E9"
     },
-    extend: {
-      animation: {
-        openModal: "openModal 1s forwards",
-        closeModal: 'closeModal 1s forwards'
-      },
-      keyframes: {
-        'openModal': {
-          "0%" : { transform: "translateX(-100rem)" },
-          "100%" : { transform: "translateX(0)" }
-        },
-        'closeModal': {
-          "0%" : { transform: "translateX(0)" },
-          "100%" : { transform: "translateX(-100rem)" }
-        }
-      }
-    }
   },
   variants: {
     extend: {},
