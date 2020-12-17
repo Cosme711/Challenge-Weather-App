@@ -1,5 +1,5 @@
-import { createStore } from 'vuex'
-import axios from 'axios'
+import { createStore } from 'vuex';
+import axios from 'axios';
 
 export default createStore({
   state: {
@@ -80,23 +80,17 @@ export default createStore({
     //     console.log(error);
     //   })
     // },
-    getInfos({ commit, dispatch, state }) {
+    getInfos({ commit, state }) {
       axios.get(`${state.api.corsURL}/${state.api.apiURL}/${state.locations}`)
       .then(result => {
         commit("SAVE_CITY", result.data.title);
         commit("SAVE_TEMPS", Math.round(result.data.consolidated_weather[0].the_temp));
         commit("SAVE_WEATHERSTATE", result.data.consolidated_weather[0].weather_state_name);
-        dispatch("convertDate", result.data.consolidated_weather[0].applicable_date);
+        commit("SAVE_DATE", result.data.consolidated_weather[0].applicable_date);
       })
       .catch(error => {
         console.log(error);
       })
-    },
-    convertDate({ commit }, date) {
-
-      // TO CONVERT
-
-      commit("SAVE_DATE", date);
     }
   },
   modules: {

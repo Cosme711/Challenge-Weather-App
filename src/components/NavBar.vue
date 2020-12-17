@@ -4,7 +4,7 @@
 
       <div class="pt-5 mt-5 w-2/3 flex justify-between items-center">
         <a class="px-4 py-2 bg-darkgrey text-white cursor-pointer" @click="toggleSidebar()">Search for places</a>
-        <a class="p-2 bg-darkgrey flex rounded-full cursor-pointer">
+        <a class="ml-2 p-2 bg-darkgrey flex rounded-full cursor-pointer">
           <span class="material-icons text-white">gps_fixed</span>
         </a>
       </div>
@@ -74,7 +74,6 @@ export default {
           if(currentDay.value.weatherState) {
             let weatherState = currentDay.value.weatherState;
             weatherState = weatherState.replace(/\s+/g, '');
-            console.log(weatherState)
             return require(`@/assets/images/${weatherState}.png`);
           }
         })
