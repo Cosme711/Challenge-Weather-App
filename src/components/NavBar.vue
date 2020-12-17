@@ -24,7 +24,7 @@
           <a>•</a>
           <a>{{ dateConvert }}</a>
         </div>
-        <div class="pt-4 flex justify-center items-center">
+        <div class="flex justify-center items-center pt-4">
           <span class="material-icons">location_on</span>
           <p class="ml-2">{{ currentDay.cityName }}</p>
         </div>

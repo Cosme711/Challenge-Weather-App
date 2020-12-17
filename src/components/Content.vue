@@ -1,7 +1,7 @@
 <template>
   <div class="w-2/3 bg-darkblue">
 
-    <div class="pt-16 w-10/12 h-full m-auto">
+    <div class="w-10/12 h-full m-auto pt-16">
         <div class="flex h-auto justify-between">
             <CardDay />
             <CardDay />
