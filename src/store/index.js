@@ -8,7 +8,11 @@ export default createStore({
       cityName: "",
       currentDate: "",
       currentTemp: 0,
-      weatherState: ""
+      weatherState: "",
+      humidity: "",
+      windspeed: "",
+      visibility: "",
+      airpressure: ""
     },
     searchModal: false,
     api: {
@@ -16,10 +20,11 @@ export default createStore({
       corsURL: "https://cors-anywhere.herokuapp.com"
     },
     coords: {
-      test: "gzgz",
-      test2: "blabla"
+      latitude: "",
+      longitude: ""
     },
-    locations: {}
+    locations: {},
+    forecast: {}
   },
   mutations: {
     SAVE_CITY(state, city) {
@@ -45,11 +50,26 @@ export default createStore({
     },
     SAVE_LOCATIONS(state, locations) {
       state.locations = locations
+    },
+    SAVE_FORECAST(state, infos) {
+      state.forecast = infos
+    },
+    SAVE_HUMIDITY(state, humidity) {
+      state.currentDay.humidity = humidity
+    },
+    SAVE_WINDSPEED(state, windspeed) {
+      state.currentDay.windspeed = windspeed
+    },
+    SAVE_VISIBILITY(state, visibility) {
+      state.currentDay.visibility = visibility
+    },
+    SAVE_AIRPRESSURE(state, airpressure) {
+      state.currentDay.airpressure = airpressure
     }
   },
   actions: {
-    getUserLocations({ commit, dispatch }) {
-      navigator.geolocation.getCurrentPosition(
+    async getUserLocations({ commit, dispatch }) {
+      await navigator.geolocation.getCurrentPosition(
         (position) => {
           let coords = {
             Latitude: position.coords.latitude,
@@ -60,8 +80,8 @@ export default createStore({
         }
       )
     },
-    searchLocationByCoords({ commit, dispatch, state }) {
-      axios.get(`${state.api.corsURL}/${state.api.apiURL}/search/?lattlong=${state.coords.Latitude},${state.coords.Longitude}`)
+    async searchLocationByCoords({ commit, dispatch, state }) {
+      await axios.get(`${state.api.corsURL}/${state.api.apiURL}/search/?lattlong=${state.coords.Latitude},${state.coords.Longitude}`)
       .then(result => {
         commit("SAVE_LOCATIONS", result.data[0].woeid);
         dispatch("getInfos");
@@ -70,23 +90,19 @@ export default createStore({
         console.log(error);
       })
     },
-    // searchLocation({ commit, dispatch, state }) {
-    //   axios.get(`${state.api.corsURL}/${state.api.apiURL}/search/?query=paris`)
-    //   .then(result => {
-    //     commit("SAVE_WOEID", result.data[0].woeid);
-    //     dispatch("getInfos");
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   })
-    // },
-    getInfos({ commit, state }) {
-      axios.get(`${state.api.corsURL}/${state.api.apiURL}/${state.locations}`)
+    async getInfos({ commit, state }) {
+      await axios.get(`${state.api.corsURL}/${state.api.apiURL}/${state.locations}`)
       .then(result => {
         commit("SAVE_CITY", result.data.title);
         commit("SAVE_TEMPS", Math.round(result.data.consolidated_weather[0].the_temp));
         commit("SAVE_WEATHERSTATE", result.data.consolidated_weather[0].weather_state_name);
         commit("SAVE_DATE", result.data.consolidated_weather[0].applicable_date);
+        commit("SAVE_FORECAST", result.data.consolidated_weather.splice(1));
+        commit("SAVE_HUMIDITY", Math.round(result.data.consolidated_weather[0].humidity));
+        commit("SAVE_WINDSPEED", Math.round(result.data.consolidated_weather[0].wind_speed));
+        commit("SAVE_VISIBILITY", Math.round(result.data.consolidated_weather[0].visibility));
+        commit("SAVE_AIRPRESSURE", Math.round(result.data.consolidated_weather[0].air_pressure));
+      
       })
       .catch(error => {
         console.log(error);

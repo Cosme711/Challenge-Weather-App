@@ -18,10 +18,11 @@ body {
 
 .transition-all-1-ease-in {
     transition: all .1s ease-in;
-  }
-  .transition-all-25-ease-in {
-      transition: all .25s ease-in;
-  }
-  .transition-background-25-ease-in {
-      transition: background-color .25s ease-in;
-  }
+}
+
+.transition-all-25-ease-in {
+    transition: all .25s ease-in;
+}
+.transition-background-25-ease-in {
+    transition: background-color .25s ease-in;
+}
