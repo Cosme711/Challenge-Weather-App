@@ -10,12 +10,12 @@
       </div>
 
       <div>
-        <img :src="imgDynamic" :alt="currentDay.weatherState">
+        <img :src="imgDynamic" :alt="current.weather.weather_state_name">
       </div>
 
       <div>
-        <p class="text-white text-8xl">{{ currentDay.currentTemp }}°C</p>
-        <p class="mt-4 text-center text-darkgrey text-4xl">{{ currentDay.weatherState }}</p>
+        <p class="ml-4 text-white text-8xl">{{ Math.round(current.weather.the_temp) }}°C</p>
+        <p class="mt-4 text-center text-darkgrey text-4xl">{{ current.weather.weather_state_name }}</p>
       </div>
 
       <div class="w-40 pb-8 text-darkgrey">
@@ -26,7 +26,7 @@
         </div>
         <div class="flex justify-center items-center pt-4">
           <span class="material-icons">location_on</span>
-          <p class="ml-2">{{ currentDay.cityName }}</p>
+          <p class="ml-2">{{ current.location.cityName }}</p>
         </div>
       </div>
 
@@ -62,6 +62,8 @@ export default {
 
         const { currentDay } = useState(["currentDay"]);
 
+        const { current } = useState(["current"]);
+
         const { searchModal } = useState(["searchModal"]);
 
         const store = useStore();
@@ -71,22 +73,23 @@ export default {
         }
 
         let imgDynamic = computed(() => {
-          if(currentDay.value.weatherState) {
-            let weatherState = currentDay.value.weatherState;
+          if(current.value.weather.weather_state_name) {
+            let weatherState = current.value.weather.weather_state_name;
             weatherState = weatherState.replace(/\s+/g, '');
             return require(`@/assets/images/${weatherState}.png`);
           }
         })
 
         let dateConvert = computed(() => {
-          if(currentDay.value.currentDate) {
-            return dayjs(currentDay.value.currentDate).format("ddd,DD MMM");
+          if(current.value.weather.applicable_date) {
+            return dayjs(current.value.weather.applicable_date).format("ddd,DD MMM");
           }
         })
 
 
         return {
             currentDay,
+            current,
             searchModal,
             openModal,
             toggleSidebar,
