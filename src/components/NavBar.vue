@@ -10,7 +10,7 @@
       </div>
 
       <div>
-        <img :src="imgDynamic" :alt="current.weather.weather_state_name">
+        <img :src="imgDynamic" :alt="current.weather.weather_state_name" class="w-40 lg:w-full">
       </div>
 
       <div>

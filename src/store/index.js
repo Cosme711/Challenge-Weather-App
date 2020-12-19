@@ -6,6 +6,7 @@ export default createStore({
     current: {
       location: {
         woeid: "",
+        query: "",
         position: {}
       },
       weather: {
@@ -39,9 +40,22 @@ export default createStore({
     SEARCH_MODAL(state, boolean) {
       state.searchModal = boolean
     },
+    SAVE_QUERY(state, query) {
+      state.current.location.query = query
+    }
   },
   actions: {
-    getUserLocations({ commit, dispatch, state }) {
+    getLocationByQuery({ commit, dispatch, state }) {
+      axios.get(`${state.api.corsURL}/${state.api.apiURL}/search/?query=${state.current.location.query}`)
+      .then(result => {
+        commit("SAVE_WOEID", result.data[0].woeid);
+        dispatch("getInfos");
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    },
+    getUserLocations({ commit, dispatch }) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           let coords = {
@@ -50,29 +64,25 @@ export default createStore({
           } 
           commit("SAVE_COORDS", coords);
           dispatch("searchLocationByCoords");
-          console.log(state.current.location.position)
         }
       )
     },
     searchLocationByCoords({ commit, dispatch, state }) {
       axios.get(`${state.api.corsURL}/${state.api.apiURL}/search/?lattlong=${state.current.location.position.Latitude},${state.current.location.position.Longitude}`)
       .then(result => {
-        console.log("he")
         commit("SAVE_WOEID", result.data[0].woeid);
-        console.log(state.current.location.woeid)
         dispatch("getInfos");
       })
       .catch(error => {
         console.log(error);
       })
     },
-    getInfos({ commit, state }) {
+    getInfos({ commit, state}) {
       axios.get(`${state.api.corsURL}/${state.api.apiURL}/${state.current.location.woeid}`)
       .then(result => {
         commit("SAVE_CITY", result.data.title);
         commit("SAVE_CURRENT", result.data.consolidated_weather[0]);
         commit("SAVE_FORECAST", result.data.consolidated_weather.splice(1));
-        console.log(state.current)
       })
       .catch(error => {
         console.log(error);
