@@ -1,6 +1,6 @@
 <template>  
 
-    <div class="fixed top-0 bg-blue w-1/4 h-screen">
+    <div class="fixed top-0 bg-blue w-1/4 h-screen overflow-y-scroll">
 
         <div class="mt-4 pr-7 w-full flex items-center justify-end cursor-pointer" @click="close()">
             <span class="material-icons text-4xl text-white">close</span>
@@ -16,9 +16,10 @@
         </div>
 
         <div>
-            <p v-for="result in data.listResult" :key="result.id">
+            <p v-for="result in data.listResult" :key="result.id" class="text-white m-2">
                 {{ result.title }}
             </p>
+            <p v-if="data.found" class="text-white text-center mt-7">Not found</p>
         </div>
 
     </div>
@@ -36,7 +37,8 @@ export default {
 
         const data = reactive({
             query: "",
-            listResult: {}
+            listResult: {},
+            found: false
         })
 
         const { api } = useState(["api"]);
@@ -52,7 +54,7 @@ export default {
                     data.listResult = result.data
                     console.log(data.listResult)
                 } else {
-                    console.log("No result found")
+                    data.found = true
                 }
             })
             .catch(error => {
