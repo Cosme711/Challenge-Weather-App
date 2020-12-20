@@ -8,7 +8,7 @@
               <p class="mt-3 text-3xl"><span class="font-bold text-7xl">{{ Math.round(current.weather.wind_speed) }}</span>mph</p>
               <div class="mt-6 mb-4 mx-8 flex justify-center items-center">
                   <div class="bg-grey rounded-full w-8 h-8 flex items-center justify-center">
-                        <span class="material-icons text-lg">navigation</span>
+                        <span class="material-icons text-lg" :style="compassDirection()">navigation</span>
                   </div>
                   <p class="ml-4">WSW</p>
               </div>
@@ -43,12 +43,14 @@ export default {
     name: "Hightlights",
     setup() {
 
-        const { currentDay } = useState(["currentDay"]);
-
         const { current } = useState(["current"]);
 
+        function compassDirection() {
+            const directionDeg = Math.round(current.value.weather.wind_direction);
+            return { transform : `rotate(${directionDeg}deg)` };
+        }
 
-        return { currentDay, current }
+        return { current, compassDirection }
     }
 }
 </script>
