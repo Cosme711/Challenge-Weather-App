@@ -6,9 +6,9 @@
             <span class="material-icons text-4xl text-white">close</span>
         </div>
 
-        <div class="mt-8 m-auto w-3/4 flex">
+        <div class="mt-8 flex justify-center">
             <div class="bg-blue">
-                <input class="p-2 bg-blue border-2 border-grey  text-white outline-none" v-model="data.query" @keydown.enter="search" type="text">
+                <input class="w-auto lg:w-28 xl:w-auto p-2 bg-blue border-2 border-grey  text-white outline-none" v-model="data.query" @keydown.enter="search" type="text">
             </div>
             <div class="ml-2 py-2 px-4 flex justify-center items-center bg-purple">
                 <a class="text-white font-semibold ">Search</a>
