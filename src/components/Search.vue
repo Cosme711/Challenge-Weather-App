@@ -6,9 +6,9 @@
             <span class="material-icons text-4xl text-white">close</span>
         </div>
 
-        <div class="mt-8 flex justify-center">
-            <div class="bg-blue">
-                <input class="p-2 bg-blue border-2 border-grey text-white outline-none" v-model="data.query" @keydown.enter="search" type="text">
+        <div class="mt-8 m-auto w-max flex">
+            <div class="bg-blue w-auto ">
+                <input class="p-2 bg-blue border-2 border-grey  text-white outline-none" v-model="data.query" @keydown.enter="search" type="text">
             </div>
             <div class="ml-2 py-2 px-4 flex justify-center items-center bg-purple">
                 <a class="text-white font-semibold ">Search</a>
@@ -52,7 +52,6 @@ export default {
                     store.commit("SAVE_QUERY", data.query);
                     store.dispatch("getLocationByQuery")
                     data.listResult = result.data
-                    console.log(data.listResult)
                 } else {
                     data.found = true
                 }

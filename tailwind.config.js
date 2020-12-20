@@ -10,6 +10,9 @@ module.exports = {
       darkgrey: "#88869D",
       purple: "#3C47E9"
     },
+    screen: {
+      'nine': "900px",
+    }
   },
   variants: {
     extend: {},
