@@ -10,7 +10,11 @@ export default createStore({
         position: {}
       },
       weather: {
-
+        air_pressure: 0,
+        humidity: 0,
+        the_temp: 0,
+        visibility: 0,
+        wind_speed: 0
       }
     },
     searchModal: false,
@@ -83,6 +87,7 @@ export default createStore({
         commit("SAVE_CITY", result.data.title);
         commit("SAVE_CURRENT", result.data.consolidated_weather[0]);
         commit("SAVE_FORECAST", result.data.consolidated_weather.splice(1));
+        console.log(state.current.weather)
       })
       .catch(error => {
         console.log(error);

@@ -8,7 +8,8 @@ module.exports = {
       white: "#E7E7EB",
       grey: "#A09FB1",
       darkgrey: "#88869D",
-      purple: "#3C47E9"
+      purple: "#3C47E9",
+      footer: "#616475"
     },
     screen: {
       'nine': "900px",

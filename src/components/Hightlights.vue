@@ -29,8 +29,8 @@
           </div>
     </div>
 
-      <footer class="mt-5 text-grey text-center">
-          <p>Cosme Gressier | <a href="">DevChallenges</a></p>
+      <footer class="mt-16 text-center text-footer">
+          <p>Cosme Gressier | <a href="">DevChallenges</a> | @ DevChallenges.io</p>
       </footer>
 
   </div>
