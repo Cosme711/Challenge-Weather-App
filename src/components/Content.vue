@@ -2,8 +2,8 @@
   <div class="w-2/3 bg-darkblue">
 
     <div class="w-10/12 m-auto pt-16 pb-10">
-        <div class="flex h-auto justify-between">
-            <CardDay v-for="day in forecast" :key="day.id" :day="day" class="mx-2" />
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-6">
+            <CardDay v-for="day in forecast" :key="day.id" :day="day" class="m-auto h-full w-full" />
         </div>
 
         <Hightlights />

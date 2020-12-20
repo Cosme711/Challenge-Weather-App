@@ -2,7 +2,7 @@
     <div>
     <div class="h-screen flex flex-col justify-between items-center bg-blue">
 
-      <div class="pt-5 px-2 lg:px-5 w-full flex justify-between items-center">
+      <div class="pt-5 px-5 w-full flex justify-between items-center">
         <a class="px-4 py-2 bg-darkgrey text-white rounded-sm cursor-pointer" @click="toggleSidebar()">Search for places</a>
         <a class="ml-2 p-2 bg-darkgrey flex rounded-full cursor-pointer" @click="getLocation">
           <span class="material-icons text-white">gps_fixed</span>
