@@ -1,6 +1,6 @@
 <template>  
 
-    <div class="fixed top-0 bg-blue w-1/4 h-screen overflow-y-scroll">
+    <div class="fixed top-0 bg-blue w-1/4 h-screen overflow-auto">
 
         <div class="mt-4 pr-7 w-full flex items-center justify-end cursor-pointer" @click="close()">
             <span class="material-icons text-4xl text-white">close</span>
@@ -16,7 +16,7 @@
         </div>
 
         <div>
-            <p v-for="result in data.listResult" :key="result.id" class="text-white m-2">
+            <p v-for="result in data.listResult" :key="result.id" class="text-white m-2 cursor-pointer" @click="searchResult(result)">
                 {{ result.title }}
             </p>
             <p v-if="data.found" class="text-white text-center mt-7">Not found</p>
@@ -49,8 +49,6 @@ export default {
             axios.get(`${api.value.corsURL}/${api.value.apiURL}/search/?query=${data.query}`)
             .then(result => {
                 if(result.data[0]) {
-                    store.commit("SAVE_QUERY", data.query);
-                    store.dispatch("getLocationByQuery")
                     data.listResult = result.data
                 } else {
                     data.found = true
@@ -60,14 +58,22 @@ export default {
                 console.log(error)
             })
         }
+
+        function searchResult(result) {
+            console.log(result.woeid)
+            store.commit("SAVE_WOEID", result.woeid);
+            store.dispatch("getInfos");
+        }
         
         function close() {
             emit('close');
         }
 
+
         return {
             data,
             search,
+            searchResult,
             close
         }
     }
