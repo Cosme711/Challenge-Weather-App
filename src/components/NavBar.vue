@@ -4,7 +4,7 @@
 
       <div class="pt-5 mt-5 w-2/3 flex justify-between items-center">
         <a class="px-4 py-2 bg-darkgrey text-white cursor-pointer" @click="toggleSidebar()">Search for places</a>
-        <a class="ml-2 p-2 bg-darkgrey flex rounded-full cursor-pointer">
+        <a class="ml-2 p-2 bg-darkgrey flex rounded-full cursor-pointer" @click="getLocation">
           <span class="material-icons text-white">gps_fixed</span>
         </a>
       </div>
@@ -72,6 +72,10 @@ export default {
           store.commit("SEARCH_MODAL", true);
         }
 
+        function getLocation() {
+            store.dispatch("getUserLocations");
+        }
+
         let imgDynamic = computed(() => {
           if(current.value.weather.weather_state_name) {
             let weatherState = current.value.weather.weather_state_name;
@@ -92,6 +96,7 @@ export default {
             current,
             searchModal,
             openModal,
+            getLocation,
             toggleSidebar,
             data,
             dateConvert,

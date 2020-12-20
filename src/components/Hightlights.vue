@@ -27,7 +27,7 @@
 
           <div class="w-full ml-6 bg-blue">
                 <p class="mt-6 mb-2 text-lg">Air Pressure</p>
-                <p class=" mb-10 text-3xl"><span class="font-bold text-7xl">{{ current.weather.air_pressure }}</span>mb</p>
+                <p class=" mb-10 text-3xl"><span class="font-bold text-7xl">{{ Math.round(current.weather.air_pressure) }}</span>mb</p>
           </div>
       </div>
 
@@ -48,6 +48,7 @@ export default {
         const { currentDay } = useState(["currentDay"]);
 
         const { current } = useState(["current"]);
+
 
         return { currentDay, current }
     }
