@@ -49,9 +49,11 @@ export default {
             axios.get(`${api.value.corsURL}/${api.value.apiURL}/search/?query=${data.query}`)
             .then(result => {
                 if(result.data[0]) {
+                    data.found = false;
                     data.listResult = result.data
                 } else {
                     data.found = true
+                    data.listResult = "";
                 }
             })
             .catch(error => {
