@@ -1,6 +1,6 @@
 <template>  
 
-    <div class="fixed top-0 bg-blue w-full lg:w-1/4 h-2/4 lg:h-screen overflow-auto">
+    <div class="fixed top-0 w-full lg:w-1/4 h-screen overflow-auto bg-blue">
 
         <div class="mt-4 pr-7 w-full flex items-center justify-end cursor-pointer" @click="close()">
             <span class="material-icons text-4xl text-white">close</span>
@@ -11,7 +11,7 @@
                 <input class="w-auto lg:w-36 p-2 bg-blue border-2 border-grey  text-white outline-none" v-model="data.query" @keydown.enter="search" type="text">
             </div>
             <div class="ml-2 py-2 px-4 flex justify-center items-center bg-purple">
-                <a class="text-white font-semibold ">Search</a>
+                <a class="text-white font-semibold cursor-pointer" @click="search">Search</a>
             </div>
         </div>
 
@@ -19,7 +19,7 @@
             <p v-for="result in data.listResult" :key="result.id" class="my-16 mx-6 p-4 hover:border hover:border-white text-white cursor-pointer" @click="searchResult(result)">
                 {{ result.title }}
             </p>
-            <p v-if="data.found" class="text-white text-center mt-7">Not found</p>
+            <p v-if="data.found" class="mt-7 text-center text-white">Not found</p>
         </div>
 
     </div>
@@ -70,13 +70,7 @@ export default {
             emit('close');
         }
 
-
-        return {
-            data,
-            search,
-            searchResult,
-            close
-        }
+        return { data, search, searchResult, close }
     }
 }
 </script>

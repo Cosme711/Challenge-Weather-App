@@ -14,8 +14,8 @@
       </div>
 
       <div>
-        <p class="ml-4 text-white text-8xl">{{ Math.round(current.weather.the_temp) }}°C</p>
-        <p class="mt-4 text-center text-darkgrey text-4xl">{{ current.weather.weather_state_name }}</p>
+        <p class="ml-4 text-8xl text-white">{{ Math.round(current.weather.the_temp) }}°C</p>
+        <p class="mt-4 text-4xl text-center text-darkgrey">{{ current.weather.weather_state_name }}</p>
       </div>
 
       <div class="w-40 pb-8 text-darkgrey">
@@ -24,7 +24,7 @@
           <a>•</a>
           <a>{{ dateConvert }}</a>
         </div>
-        <div class="flex justify-center items-center pt-4">
+        <div class="pt-4 flex justify-center items-center">
           <span class="material-icons">location_on</span>
           <p class="ml-2">{{ current.location.cityName }}</p>
         </div>
@@ -89,7 +89,6 @@ export default {
             return dayjs(current.value.weather.applicable_date).format("ddd,DD MMM");
           }
         })
-
 
         return {
             currentDay,
