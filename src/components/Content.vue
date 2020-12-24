@@ -5,7 +5,6 @@
         <div class="grid grid-cols-2 sm:grid-cols-5 gap-6">
             <CardDay v-for="day in forecast" :key="day.id" :day="day" class="m-auto h-full w-full" />
         </div>
-
         <Hightlights />
     </div>
 

@@ -11,7 +11,6 @@
 
 <script>
 
-// import { useState } from "@/helpers";
 import dayjs from 'dayjs';
 
 export default {
@@ -36,7 +35,3 @@ export default {
 
 }
 </script>
-
-<style>
-
-</style>

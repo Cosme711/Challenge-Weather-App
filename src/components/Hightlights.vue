@@ -1,6 +1,6 @@
 <template>
   <div class="text-white">
-      <p class="mt-14 text-3xl font-bold">Today’s Hightlights </p>
+    <p class="mt-14 text-3xl font-bold">Today’s Hightlights </p>
 
     <div class="mt-8 grid grid-cols-1 grid-rows-4 sm:grid-cols-2 sm:grid-rows-2 gap-5 lg:gap-10 text-center">
           <div class=" bg-blue">
