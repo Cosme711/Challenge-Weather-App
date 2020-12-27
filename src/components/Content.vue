@@ -3,8 +3,14 @@
 
     <div class="w-10/12 m-auto pt-16 pb-10">
         <div class="mb-7 w-full flex justify-end text-white text-lg font-bold">
-          <a class="bg-white text-blue py-3 px-4 rounded-full cursor-pointer" @click="store.commit('IS_CELCIUS', true)">°C</a>
-          <a class="ml-4 bg-blue text-white py-3 px-4 rounded-full cursor-pointer" @click="store.commit('IS_CELCIUS', false)">°F</a>
+          <a class="py-3 px-4 rounded-full cursor-pointer" 
+            @click="store.commit('IS_CELCIUS', true)"
+            :class="isCelcius ? 'bg-white text-blue' : 'bg-blue text-white'"
+          >°C</a>
+          <a class="ml-4 py-3 px-4 rounded-full cursor-pointer"
+            @click="store.commit('IS_CELCIUS', false)"
+            :class="isCelcius ? 'bg-blue text-white' : 'bg-white text-blue'"
+          >°F</a>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-5 gap-6">
             <CardDay v-for="day in forecast" :key="day.id" :day="day" class="m-auto h-full w-full" />
@@ -30,7 +36,9 @@ export default {
 
       const { forecast } = useState(["forecast"]);
 
-      return { forecast, store }
+      const { isCelcius } = useState(["isCelcius"]);
+
+      return { forecast, store, isCelcius }
       
     }
 
