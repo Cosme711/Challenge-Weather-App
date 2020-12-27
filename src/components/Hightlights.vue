@@ -16,6 +16,17 @@
           <div class="bg-blue">
               <p class="mt-4 text-lg">Humidity</p>
               <p class="mt-3 text-3xl "><span class="text-7xl font-bold">{{ Math.round(current.weather.humidity) }}</span>%</p>
+                <div class="w-64 mt-2 m-auto flex flex-col items-center font-bold text-xs">
+                    <div class="w-11/12 flex items-center justify-between">
+                        <p>0</p>
+                        <p>50</p>
+                        <p>100</p>
+                    </div>
+                    <div class="mt-1 h-2 w-11/12 bg-white rounded">
+                        <div class="h-2 bg-yellow rounded" :style="humidityBar"></div>
+                    </div>
+                    <p class="mt-1 w-11/12 text-right">%</p>
+                </div>
           </div>
 
           <div class="bg-blue">
@@ -38,6 +49,7 @@
 
 <script>
 import { useState } from "@/helpers";
+import { computed } from 'vue';
 
 export default {
     name: "Hightlights",
@@ -45,12 +57,21 @@ export default {
 
         const { current } = useState(["current"]);
 
+        console.log(current.value.weather.humidity)
+
         function compassDirection() {
             const directionDeg = Math.round(current.value.weather.wind_direction);
             return { transform : `rotate(${directionDeg}deg)` };
         }
 
-        return { current, compassDirection }
+        let humidityBar = computed(() => {
+            return {
+                width : Math.round(current.value.weather.humidity) + "%"
+            }
+        })
+
+
+        return { current, compassDirection, humidityBar }
     }
 }
 </script>
