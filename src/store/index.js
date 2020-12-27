@@ -3,6 +3,10 @@ import axios from 'axios';
 
 export default createStore({
   state: {
+    api: {
+      apiURL: "https://www.metaweather.com/api/location",
+      corsURL: "https://cors-anywhere.herokuapp.com"
+    },
     current: {
       location: {
         woeid: "",
@@ -15,16 +19,11 @@ export default createStore({
         the_temp: 0,
         visibility: 0,
         wind_speed: 0,
-        fahrenheit: 0
+        temp_fahrenheit: 0
       },
     },
-    searchModal: false,
-    api: {
-      apiURL: "https://www.metaweather.com/api/location",
-      corsURL: "https://cors-anywhere.herokuapp.com"
-    },
-    locations: {},
     forecast: {},
+    searchModal: false,
     isCelcius: true
   },
   mutations: {
@@ -49,11 +48,11 @@ export default createStore({
     SAVE_QUERY(state, query) {
       state.current.location.query = query
     },
+    SAVE_TEMP_F(state, number) {
+      state.current.weather.temp_fahrenheit = number
+    },
     IS_CELCIUS(state, boolean) {
       state.isCelcius = boolean
-    },
-    SAVE_TEMP_F(state, number) {
-      state.current.weather.fahrenheit = number
     }
    },
   actions: {
@@ -104,12 +103,8 @@ export default createStore({
     convertToF({ commit, state}) {
       const temp = state.current.weather.the_temp;
       var today = ((temp * 9/5) + 32);
-      // const temptmr = state.forecast[0].min_temp
-      // var tmr = ((temptmr * 9/5) +32)
-
       commit("SAVE_TEMP_F", today)
     }
-  },
-  modules: {}
+  }
 })
 

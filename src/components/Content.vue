@@ -1,7 +1,6 @@
 <template>
   <div class="w-2/3 bg-darkblue">
-
-    <div class="w-10/12 m-auto pt-16 pb-10">
+    <div class="pt-16 pb-10 w-10/12 m-auto">
         <div class="mb-7 w-full flex justify-end text-white text-lg font-bold">
           <a class="py-3 px-4 rounded-full cursor-pointer" 
             @click="store.commit('IS_CELCIUS', true)"
@@ -17,7 +16,6 @@
         </div>
         <Hightlights />
     </div>
-
   </div>
 </template>
 
@@ -38,13 +36,8 @@ export default {
 
       const { isCelcius } = useState(["isCelcius"]);
 
-      return { forecast, store, isCelcius }
+      return { store, forecast, isCelcius }
       
     }
-
 }
 </script>
-
-<style>
-
-</style>

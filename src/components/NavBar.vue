@@ -29,7 +29,6 @@
             <p class="ml-2">{{ current.location.cityName }}</p>
           </div>
         </div>
-
       </div>
 
       <transition enter-active-class="animate__animated animate__slideInLeft animate__faster" leave-active-class="animate__animated animate__slideOutLeft animate__faster" mode="out-in">
@@ -40,10 +39,10 @@
 </template>
 
 <script>
+import Search from "@/components/Search";
 import 'animate.css';
 import dayjs from 'dayjs';
 import { useState } from "@/helpers";
-import Search from "@/components/Search";
 import { useStore } from "vuex";
 import { reactive, computed } from 'vue';
 
@@ -78,7 +77,7 @@ export default {
             store.dispatch("getUserLocations");
         }
 
-        let imgDynamic = computed(() => {
+        const imgDynamic = computed(() => {
           if(current.value.weather.weather_state_name) {
             let weatherState = current.value.weather.weather_state_name;
             weatherState = weatherState.replace(/\s+/g, '');
@@ -86,31 +85,31 @@ export default {
           }
         })
 
-        let theTemp = computed(() => {
+        const theTemp = computed(() => {
           if(isCelcius.value === true && current.value.weather.the_temp) {
-            return Math.round(current.value.weather.the_temp) + "°C"
-          } else if(isCelcius.value === false && current.value.weather.fahrenheit) {
-            return Math.round(current.value.weather.fahrenheit) + "°F"
+            return Math.round(current.value.weather.the_temp) + "°C";
+          } else if(isCelcius.value === false && current.value.weather.temp_fahrenheit) {
+            return Math.round(current.value.weather.temp_fahrenheit) + "°F";
           }
         })
 
-        let dateConvert = computed(() => {
+        const dateConvert = computed(() => {
           if(current.value.weather.applicable_date) {
             return dayjs(current.value.weather.applicable_date).format("ddd,DD MMM");
           }
         })
 
         return {
+            data,
+            toggleSidebar,
             currentDay,
             current,
             searchModal,
             openModal,
             getLocation,
-            toggleSidebar,
-            data,
-            dateConvert,
             imgDynamic,
-            theTemp
+            theTemp,
+            dateConvert,
         }
     }
 }

@@ -43,7 +43,6 @@
       <footer class="mt-16 text-center text-footer">
           <p>Cosme Gressier | <a href="">DevChallenges</a> | @ DevChallenges.io</p>
       </footer>
-
   </div>
 </template>
 
@@ -68,12 +67,8 @@ export default {
             }
         })
 
-
         return { current, compassDirection, humidityBar }
+        
     }
 }
 </script>
-
-<style>
-
-</style>

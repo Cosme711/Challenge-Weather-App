@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-blue w-40 rounded-md flex flex-col">
+    <div class="w-40 flex flex-col bg-blue rounded-md">
         <p class="mt-4 text-white text-center">{{ dateConvert }}</p>
         <img :src="weatherImage(day.weather_state_name)" :alt="day.weather_state_name" class="w-4/6 m-auto">
         <div class="my-4 flex justify-center">
@@ -10,7 +10,6 @@
 </template>
 
 <script>
-
 import dayjs from 'dayjs';
 
 export default {
@@ -44,11 +43,10 @@ export default {
         }
     },
     methods: {
-        weatherImage(weatherType) {
-            weatherType = weatherType.replace(/\s+/g, '');
-            return require(`@/assets/images/${weatherType}.png`);
+        weatherImage(weatherState) {
+            weatherState = weatherState.replace(/\s+/g, '');
+            return require(`@/assets/images/${weatherState}.png`);
         }
     }
-
 }
 </script>

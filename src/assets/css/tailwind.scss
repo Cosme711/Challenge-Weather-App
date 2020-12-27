@@ -2,9 +2,6 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-// font-family: 'Montserrat', sans-serif;
-// font-family: 'Raleway', sans-serif;
-
 * {
     margin: 0;
     padding: 0;
@@ -32,21 +29,17 @@ footer {
     transition: background-color .25s ease-in;
 }
 
-
-::-webkit-scrollbar-track
-{
+::-webkit-scrollbar-track {
     background-color: #100E1D;
 }
 
-::-webkit-scrollbar
-{
+::-webkit-scrollbar {
 	width: 12px;
     background-color: #100E1D;
     border-radius: 5px;
 }
 
-::-webkit-scrollbar-thumb
-{
+::-webkit-scrollbar-thumb {
     background-color: #555;
     background-color: #F5F5F5;
     border-radius: 5px;

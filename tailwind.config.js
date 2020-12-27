@@ -1,6 +1,4 @@
 module.exports = {
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
       blue: "#1E213A",
@@ -15,9 +13,5 @@ module.exports = {
     screen: {
       'nine': "900px",
     }
-  },
-  variants: {
-    extend: {},
-  },
-  plugins: [],
+  }
 }
