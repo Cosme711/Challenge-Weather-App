@@ -3,8 +3,8 @@
         <p class="mt-4 text-white text-center">{{ dateConvert }}</p>
         <img :src="weatherImage(day.weather_state_name)" :alt="day.weather_state_name" class="w-4/6 m-auto">
         <div class="my-4 flex justify-center">
-            <p class="mr-2 text-white">{{ Math.round(day.min_temp) }}°C</p>
-            <p class="ml-2 text-grey">{{ Math.round(day.max_temp) }}°C</p>
+            <p class="mr-2 text-white">{{ minTemperature }}</p>
+            <p class="ml-2 text-grey">{{ maxTemperature }}</p>
         </div>
     </div>
 </template>
@@ -24,6 +24,23 @@ export default {
     computed: {
         dateConvert() {
             return dayjs(this.day.applicable_date).format("ddd,DD MMM");
+        },
+        getIsCelcius() {
+            return this.$store.state.isCelcius
+        },
+        minTemperature() {
+          if(this.getIsCelcius) {
+            return Math.round(this.day.min_temp) + "°C"
+          } else {
+              return Math.round(((this.day.min_temp * 9/5) + 32)) + "°F";
+          }
+        },
+        maxTemperature() {
+            if(this.getIsCelcius) {
+                return Math.round(this.day.max_temp) + "°C"
+            } else {
+                return Math.round(((this.day.max_temp * 9/5) + 32)) + "°F";
+            }
         }
     },
     methods: {
