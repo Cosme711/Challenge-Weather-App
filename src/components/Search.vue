@@ -16,7 +16,7 @@
         </div>
 
         <div>
-            <p v-for="result in data.listResult" :key="result.id" class="my-16 mx-6 p-4 hover:border hover:border-white text-white cursor-pointer" @click="searchResult(result)">
+            <p v-for="result in data.listResult" :key="result.id" class="my-16 mx-6 p-4 border border-white border-opacity-0 hover:border-opacity-50 text-white cursor-pointer" @click="searchResult(result)">
                 {{ result.title }}
             </p>
             <p v-if="data.found" class="mt-7 text-center text-white">Not found</p>
