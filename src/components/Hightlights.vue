@@ -57,8 +57,6 @@ export default {
 
         const { current } = useState(["current"]);
 
-        console.log(current.value.weather.humidity)
-
         function compassDirection() {
             const directionDeg = Math.round(current.value.weather.wind_direction);
             return { transform : `rotate(${directionDeg}deg)` };

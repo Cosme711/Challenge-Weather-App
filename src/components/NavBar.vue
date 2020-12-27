@@ -14,7 +14,7 @@
         </div>
 
         <div>
-          <p class="ml-4 text-8xl text-white">{{ Math.round(current.weather.the_temp) }}°C</p>
+          <p class="ml-4 text-8xl text-white">{{ theTemp }}</p>
           <p class="mt-4 text-4xl text-center text-darkgrey">{{ current.weather.weather_state_name }}</p>
         </div>
 
@@ -66,6 +66,8 @@ export default {
 
         const { searchModal } = useState(["searchModal"]);
 
+        const { isCelcius } = useState(["isCelcius"]);
+
         const store = useStore();
 
         function openModal() {
@@ -84,6 +86,14 @@ export default {
           }
         })
 
+        let theTemp = computed(() => {
+          if(isCelcius.value === true && current.value.weather.the_temp) {
+            return Math.round(current.value.weather.the_temp) + "°C"
+          } else if(isCelcius.value === false && current.value.weather.fahrenheit) {
+            return Math.round(current.value.weather.fahrenheit) + "°F"
+          }
+        })
+
         let dateConvert = computed(() => {
           if(current.value.weather.applicable_date) {
             return dayjs(current.value.weather.applicable_date).format("ddd,DD MMM");
@@ -99,7 +109,8 @@ export default {
             toggleSidebar,
             data,
             dateConvert,
-            imgDynamic
+            imgDynamic,
+            theTemp
         }
     }
 }

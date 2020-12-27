@@ -14,8 +14,9 @@ export default createStore({
         humidity: 0,
         the_temp: 0,
         visibility: 0,
-        wind_speed: 0
-      }
+        wind_speed: 0,
+        fahrenheit: 0
+      },
     },
     searchModal: false,
     api: {
@@ -23,7 +24,8 @@ export default createStore({
       corsURL: "https://cors-anywhere.herokuapp.com"
     },
     locations: {},
-    forecast: {}
+    forecast: {},
+    isCelcius: true
   },
   mutations: {
     SAVE_COORDS(state, coords) {
@@ -46,8 +48,14 @@ export default createStore({
     },
     SAVE_QUERY(state, query) {
       state.current.location.query = query
+    },
+    IS_CELCIUS(state, boolean) {
+      state.isCelcius = boolean
+    },
+    SAVE_TEMP_F(state, number) {
+      state.current.weather.fahrenheit = number
     }
-  },
+   },
   actions: {
     getLocationByQuery({ commit, dispatch, state }) {
       axios.get(`${state.api.corsURL}/${state.api.apiURL}/search/?query=${state.current.location.query}`)
@@ -81,17 +89,25 @@ export default createStore({
         console.log(error);
       })
     },
-    getInfos({ commit, state}) {
+    getInfos({ commit, dispatch, state}) {
       axios.get(`${state.api.corsURL}/${state.api.apiURL}/${state.current.location.woeid}`)
       .then(result => {
         commit("SAVE_CITY", result.data.title);
         commit("SAVE_CURRENT", result.data.consolidated_weather[0]);
         commit("SAVE_FORECAST", result.data.consolidated_weather.splice(1));
-        console.log(state.current.weather)
+        dispatch("convertToF");
       })
       .catch(error => {
         console.log(error);
       })
+    },
+    convertToF({ commit, state}) {
+      const temp = state.current.weather.the_temp;
+      var today = ((temp * 9/5) + 32);
+      // const temptmr = state.forecast[0].min_temp
+      // var tmr = ((temptmr * 9/5) +32)
+
+      commit("SAVE_TEMP_F", today)
     }
   },
   modules: {}
