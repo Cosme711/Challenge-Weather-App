@@ -61,7 +61,7 @@ export default {
             return { transform : `rotate(${directionDeg}deg)` };
         }
 
-        let humidityBar = computed(() => {
+        const humidityBar = computed(() => {
             return {
                 width : Math.round(current.value.weather.humidity) + "%"
             }
