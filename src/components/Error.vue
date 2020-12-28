@@ -11,19 +11,17 @@
             <a class="bg-blue flex p-2 rounded cursor-pointer" @click="reload"><span class="material-icons">refresh</span></a>
         </div>
 
-        <footer class="mt-16 flex flex-col sm:flex-row justify-center text-center text-footer">
-          <div><a href="https://github.com/Cosme711">Cosme Gressier</a></div>
-          <div class="mx-2"><p>| <a href="https://devchallenges.io/">DevChallenges</a> |</p></div>
-          <div><a href="https://twitter.com/GressierCosme1">@GressierCosme1</a></div>
-        </footer>
+        <Footer />
     </div>
 </template>
 
 <script>
+import Footer from "@/components/Footer.vue";
 import { useStore } from "vuex";
 
 export default {
     name: "Error",
+    components: { Footer },
     setup() {
 
         const store = useStore();
