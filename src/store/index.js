@@ -62,6 +62,7 @@ export default createStore({
       .then(result => {
         commit("SAVE_WOEID", result.data[0].woeid);
         dispatch("getInfos");
+        commit("CHANGE_ERROR", false);
       })
       .catch(error => {
         console.log(error)
@@ -85,6 +86,7 @@ export default createStore({
       .then(result => {
         commit("SAVE_WOEID", result.data[0].woeid);
         dispatch("getInfos");
+        commit("CHANGE_ERROR", false);
       })
       .catch(error => {
         console.log(error);
@@ -97,6 +99,7 @@ export default createStore({
         commit("SAVE_CITY", result.data.title);
         commit("SAVE_CURRENT", result.data.consolidated_weather[0]);
         commit("SAVE_FORECAST", result.data.consolidated_weather.splice(1));
+        commit("CHANGE_ERROR", false);
         dispatch("convertToF");
       })
       .catch(error => {

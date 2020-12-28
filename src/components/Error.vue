@@ -7,6 +7,28 @@
             <li class="py-2"><a href="">MetaWeather's</a> API could be down.</li>
             <li>Your browser is not updated</li>
         </ul>
+        <div class="mt-6 lg:w-1/2 sm:w-3/4 w-11/12 flex">
+            <a class="bg-blue flex p-2 rounded cursor-pointer" @click="reload"><span class="material-icons">refresh</span></a>
+        </div>
     </div>
 </template>
 
+<script>
+import { useStore } from "vuex";
+
+export default {
+    name: "Error",
+    setup() {
+
+        const store = useStore();
+
+        function reload() {
+            store.commit("CHANGE_ERROR", false);
+            window.location.reload();
+        }
+
+        return { reload }
+
+    }
+}
+</script>
