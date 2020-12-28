@@ -10,6 +10,12 @@
         <div class="mt-6 lg:w-1/2 sm:w-3/4 w-11/12 flex">
             <a class="bg-blue flex p-2 rounded cursor-pointer" @click="reload"><span class="material-icons">refresh</span></a>
         </div>
+
+        <footer class="mt-16 flex flex-col sm:flex-row justify-center text-center text-footer">
+          <div><a href="https://github.com/Cosme711">Cosme Gressier</a></div>
+          <div class="mx-2"><p>| <a href="https://devchallenges.io/">DevChallenges</a> |</p></div>
+          <div><a href="https://twitter.com/GressierCosme1">@GressierCosme1</a></div>
+        </footer>
     </div>
 </template>
 
