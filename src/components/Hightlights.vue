@@ -40,7 +40,7 @@
           </div>
     </div>
 
-    <Footer />
+    <Footer class="mt-9"/>
   </div>
 </template>
 

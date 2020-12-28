@@ -1,5 +1,5 @@
 <template>
-    <div class="h-screen flex justify-center items-center flex-col text-red pb-48">
+    <div class="pb-8 h-screen flex justify-center items-center flex-col text-red">
         <h1 class="text-3xl sm:text-5xl mx-8 font-bold text-center flex flex-col sm:flex-row"><span class="mb-3 sm:mt-0 sm:pr-4 text-5xl">Oops !</span> Error Occured</h1>
         <p class=" lg:w-1/2 sm:w-3/4 w-11/12  mt-8 pt-4 border-t border-opacity-75 border-grey text-white font-bold text-2xl tracking-wide">Possible reason :</p>
         <ul class="lg:w-1/2 sm:w-3/4 w-11/12 mt-6 list-disc list-inside text-white">
@@ -10,9 +10,9 @@
         <div class="mt-6 lg:w-1/2 sm:w-3/4 w-11/12 flex">
             <a class="bg-blue flex p-2 rounded cursor-pointer" @click="reload"><span class="material-icons">refresh</span></a>
         </div>
-
-        <Footer />
     </div>
+
+    <Footer class="-mt-24 sm:-mt-10"/>
 </template>
 
 <script>
