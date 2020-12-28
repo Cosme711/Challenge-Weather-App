@@ -24,7 +24,8 @@ export default createStore({
     },
     forecast: {},
     searchModal: false,
-    isCelcius: true
+    isCelcius: true,
+    error: false
   },
   mutations: {
     SAVE_COORDS(state, coords) {
@@ -50,6 +51,9 @@ export default createStore({
     },
     IS_CELCIUS(state, boolean) {
       state.isCelcius = boolean
+    },
+    CHANGE_ERROR(state, boolean) {
+      state.error = boolean
     }
    },
   actions: {
@@ -61,6 +65,7 @@ export default createStore({
       })
       .catch(error => {
         console.log(error)
+        commit("CHANGE_ERROR", true);
       })
     },
     getUserLocations({ commit, dispatch }) {
@@ -83,6 +88,7 @@ export default createStore({
       })
       .catch(error => {
         console.log(error);
+        commit("CHANGE_ERROR", true);
       })
     },
     getInfos({ commit, dispatch, state}) {
@@ -95,6 +101,7 @@ export default createStore({
       })
       .catch(error => {
         console.log(error);
+        commit("CHANGE_ERROR", true);
       })
     },
     convertToF({ commit, state}) {
