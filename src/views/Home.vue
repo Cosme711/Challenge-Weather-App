@@ -1,7 +1,7 @@
 <template>
-    <NavBar class="relative lg:fixed w-full lg:w-1/4" v-if="!error"/>
-    <Content class="relative lg:absolute lg:left-1/4 w-full lg:w-3/4 mr-1/3 bg-darkblue" v-if="!error"/>
-    <Error v-if="error"/>
+    <NavBar class="relative lg:fixed w-full lg:w-1/4" v-show="!error"/>
+    <Content class="relative lg:absolute lg:left-1/4 w-full lg:w-3/4 mr-1/3 bg-darkblue" v-show="!error"/>
+    <Error v-show="error"/>
 </template>
 
 <script>

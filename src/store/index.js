@@ -1,7 +1,9 @@
 import { createStore } from 'vuex';
+import createPersistedState from "vuex-persistedstate";
 import axios from 'axios';
 
 export default createStore({
+  plugins: [createPersistedState()],
   state: {
     api: {
       apiURL: "https://www.metaweather.com/api/location",
