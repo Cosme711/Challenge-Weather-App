@@ -27,7 +27,7 @@ export default createStore({
     forecast: {},
     searchModal: false,
     isCelcius: true,
-    error: false
+    isError: false
   },
   mutations: {
     SAVE_COORDS(state, coords) {
@@ -42,20 +42,20 @@ export default createStore({
     SAVE_CURRENT(state, current) {
       state.current.weather = current
     },
+    SAVE_TEMP_F(state, number) {
+      state.current.weather.temp_fahrenheit = number
+    },
     SAVE_FORECAST(state, infos) {
       state.forecast = infos
     },
     SEARCH_MODAL(state, boolean) {
       state.searchModal = boolean
     },
-    SAVE_TEMP_F(state, number) {
-      state.current.weather.temp_fahrenheit = number
-    },
     IS_CELCIUS(state, boolean) {
       state.isCelcius = boolean
     },
     CHANGE_ERROR(state, boolean) {
-      state.error = boolean
+      state.isError = boolean
     }
    },
   actions: {
@@ -116,4 +116,3 @@ export default createStore({
     }
   }
 })
-
