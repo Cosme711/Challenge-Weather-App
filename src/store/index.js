@@ -11,6 +11,7 @@ export default createStore({
     },
     current: {
       location: {
+        cityName: "",
         default: "paris",
         woeid: "",
         position: {}
@@ -111,7 +112,7 @@ export default createStore({
     },
     convertToF({ commit, state}) {
       const temp = state.current.weather.the_temp;
-      var today = ((temp * 9/5) + 32);
+      const today = ((temp * 9/5) + 32);
       commit("SAVE_TEMP_F", today)
     }
   }
