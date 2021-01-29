@@ -54,4 +54,8 @@ $ npm start
 
 ## Contact
 
-- Twitter [@GressierCosme1](https://twitter.com/GressierCosme1})
+- Portfolio [Cosme Gressier](https://www.cosme-gressier.com)
+- Twitter [@GressierCosme1](https://twitter.com/GressierCosme1)
+- GitHub [@Cosme711](https://github.com/Cosme711)
+
+
