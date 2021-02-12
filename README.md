@@ -34,6 +34,7 @@
 
 - [Vue.js](https://vuejs.org/)
 - [Tailwind](https://tailwindcss.com/)
+- [Axios](https://www.npmjs.com/package/axios)
 
 ## How To Use
 
